@@ -6,14 +6,15 @@ import Data.List
 --n>1 and n is an integer, then n can be written as the product of primes
 
 numDivisors  :: Integer -> Int
-numDivisors x = (length $ divisors x) + 2
+numDivisors x = (length $ divisors x)
 
 f20 :: Int -> Int -> Int
 f20 x y = 2^(x) + 3^(y)
 
 f22 = [x | x <- [1..], numDivisors x == 6]
 
-divisors n = [x | x <- [2..(n `div` 2)], n `mod` x == 0] 
+divisors 1 = [1]
+divisors n = [1] ++ [x | x <- [2..(n `div` 2)], n `mod` x == 0] ++ [n]
 
 concatInteger xs = read $ concat $ map show xs :: Integer
 
